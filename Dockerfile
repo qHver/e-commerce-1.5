@@ -52,8 +52,13 @@ COPY --from=build --chown=bun:bun /app/bun.lock ./bun.lock
 COPY --from=build --chown=bun:bun /app/turbo.json ./turbo.json
 COPY --from=build --chown=bun:bun /app/apps/api ./apps/api
 COPY --from=build --chown=bun:bun /app/packages ./packages
+COPY --from=build --chown=bun:bun /app/apps/admin-test/package.json ./apps/admin-test/package.json
+COPY --from=build --chown=bun:bun /app/apps/storefront/package.json ./apps/storefront/package.json
+COPY --from=build --chown=bun:bun /app/apps/vendor/package.json ./apps/vendor/package.json
 COPY --from=build --chown=bun:bun /app/integration-tests/package.json ./integration-tests/package.json
 COPY --from=build --chown=bun:bun /app/e2e-tests/package.json ./e2e-tests/package.json
+COPY --from=build --chown=bun:bun /app/e2e-tests/hosts/admin/package.json ./e2e-tests/hosts/admin/package.json
+COPY --from=build --chown=bun:bun /app/e2e-tests/hosts/vendor/package.json ./e2e-tests/hosts/vendor/package.json
 
 RUN --mount=type=cache,target=/root/.bun/install/cache \
     bun install --frozen-lockfile --production
