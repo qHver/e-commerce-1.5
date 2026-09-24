@@ -8,7 +8,6 @@ WORKDIR /app
 COPY package.json bun.lock turbo.json ./
 COPY apps/api/package.json apps/api/package.json
 COPY apps/admin-test/package.json apps/admin-test/package.json
-COPY apps/docs/package.json apps/docs/package.json
 COPY apps/storefront/package.json apps/storefront/package.json
 COPY apps/vendor/package.json apps/vendor/package.json
 COPY packages/admin/package.json packages/admin/package.json
@@ -37,8 +36,8 @@ COPY . .
 
 RUN bun run --cwd /app/packages/types build \
  && bun run --cwd /app/packages/client build \
- && bun run --cwd /app/packages/dashboard-shared build \
  && bun run --cwd /app/packages/dashboard-sdk build \
+ && bun run --cwd /app/packages/dashboard-shared build \
  && bun run --cwd /app/packages/cli build \
  && bun run --cwd /app/packages/core build
 
